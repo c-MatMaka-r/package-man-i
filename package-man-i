@@ -2,9 +2,9 @@
 
 set -euo pipefail
 
-pman_name="package-man-u"
-pman_url="https://raw.githubusercontent.com/c-MatMaka-r/"$pman_name"/main/"$pman_name""
-pman_dest="/usr/local/bin"
+pman_u_name="package-man-u"
+pman_u_url="https://raw.githubusercontent.com/c-MatMaka-r/$pman_u_name/main/$pman_u_name"
+pman_u_dest="/usr/local/bin"
 
 # if not root do nothing
 if [[ $EUID -ne 0 ]]; then
@@ -12,15 +12,15 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-if ! command -v $pman_name > /dev/null 2>&1
+if ! command -v $pman_u_name > /dev/null 2>&1
 then
-  echo "$pman_name isn't installed."
+  echo "$pman_u_name isn't installed."
   echo "Installation..."
-  cd "$pman_dest"
-  curl -O "$pman_url"
+  cd "$pman_u_dest"
+  curl -O "$pman_u_url"
   
-  chmod +x "$pman_dest/$pman_name"
+  chmod +x "$pman_u_dest/$pman_u_name"
   echo "Installed."
 fi
 
-"$pman_dest/$pman_name"
+"$pman_u_dest/$pman_u_name"

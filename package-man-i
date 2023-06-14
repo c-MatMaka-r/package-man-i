@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+pman_name="package-man-u"
+pman_url="https://raw.githubusercontent.com/c-MatMaka-r/"$pman_name"/main/"$pman_name""
+pman_dest="/usr/local/bin"
+
+# if not root do nothing
+if [[ $EUID -ne 0 ]]; then
+  echo "Root privileges required."
+  exit 1
+fi
+
+if ! command -v $pman_name > /dev/null 2>&1
+then
+  echo "$pman_name isn't installed."
+  echo "Installation..."
+  cd "$pman_dest"
+  curl -O "$pman_url"
+  
+  chmod +x "$pman_dest/$pman_name"
+  echo "Installed."
+fi
+
+"$pman_dest/$pman_name"
